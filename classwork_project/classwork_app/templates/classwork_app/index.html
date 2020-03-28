@@ -1,0 +1,78 @@
+{% extends 'classwork_app/base.html' %}
+{% load static %}
+<!Doctype html>
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<section id="banner">
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-9 text-center">
+      <div class="caption">
+        <h1>Join Us</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet minus, esse ex molestias maiores. Provident nam totam modi, expedita quos sit voluptates distinctio porro illo esse asperiores, animi eveniet ipsam?
+        </p>
+        <a href="#" class="btn btn-primary">Readmore</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %} services page goes in here {% endcomment %}
+
+<section id="services" class="text-center">
+    <div class="page-header">
+        <h1>Services</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center" id="mainContent">
+        <div class="row">
+            {% if index2 %}
+            {% for s in index2 %}
+            <div class="col-sm-4">
+            {% comment %} <span class="fa fa-android"></span> {% endcomment %}
+            <h1>{{ s.s_title }}</h1>
+            <p>
+                {{ s.s_content|truncatewords:20 }}
+            </p>
+            <a href="#" class="btn btn-primary">Readmore</a>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        </div>
+    </div>
+  
+</section>
+<br>
+
+{% comment %} about page goes here {% endcomment %}
+<section id="content" class="text-center">
+    <div class="page-header">
+        <h1>About Facilitators</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 text-center" id="mainContent">
+        <div class="row">
+            {% if index1 %}
+            {% for abt in index1 %}
+            <div class="col-sm-4">
+            <a href="detail.html">
+                <img src="{{ abt.profile.url }}" class="img-circle">
+            </a>
+            <h2>{{ abt.abt_title }}</h2>
+            <p>
+                {{ abt.description| truncatewords:20 }}
+            </p>
+            <a href="{% url 'classwork_app:about_detail' abt.id %}" class="btn btn-primary">Readmore</a>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        </div>
+    </div>
+</section>
+{% endblock%}

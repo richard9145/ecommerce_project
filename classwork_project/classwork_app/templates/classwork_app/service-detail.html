@@ -1,0 +1,33 @@
+{% extends 'classwork_app/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+{% block title %}
+Services
+{% endblock  %}
+
+{% block content %}
+  <section id="sectionTitle">
+    <div class="pageTitle text-center">
+      <h1>{{ sd.s_title }}</h1>
+    </div>
+  </section>
+  <section id="services">
+  <div class="row">
+    <div class="col-sm-9 text-center" id="mainContent">
+      <div class="row">
+        {% if sd %}
+        <div class="col-sm-12">
+          <span class="fa fa-android"></span>
+          <h1>{{ sd.s_title }}</h1>
+          <p>
+            {{ sd.s_content }}
+          </p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% include 'classwork_app/sidebar.html' %}
+  </div>
+  
+</section>
+{% endblock  %}
