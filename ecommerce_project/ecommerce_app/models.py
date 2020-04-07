@@ -7,13 +7,19 @@ from django.utils import timezone
 class UserProfile(models.Model):
     age = models.PositiveIntegerField(blank=True)
     phone= models.CharField(max_length=15)
-    website = models.URLField(blank=True, null=True)    
+    website = models.URLField(blank=True, null=True) 
 
 class Category(models.Model):
     cat_name = models.CharField(max_length=100, verbose_name= 'Category Name')
     desc = models.TextField(blank=True, null=True, verbose_name='Description')
     def __str__(self):
         return self.cat_name
+
+class SubCategory(models.Model):
+    sub_name = models.CharField(max_length=100, verbose_name= 'Sub Category')
+    desc = models.TextField(blank=True, null=True, verbose_name='Description')
+    def __str__(self):
+        return self.sub_name
 
 class Post(models.Model):
     pst_title = models.CharField(max_length=150, verbose_name='Post Title')

@@ -37,10 +37,26 @@
                             <div class="logo"><a href="#">KataKara</a></div>
 							<nav class="main_nav">
 								<ul>
-									<li class="hassubs"><a href="{% url 'index'%}">Home</a></li>
-									<li class=""><a href="{% url 'ecommerce_app:categories' %}">Categories</a></li>
-									<li><a href="">Accessories</a></li>
-									<li><a href="#">Offers</a></li>
+									<li class=""><a href="{% url 'index'%}">Home</a></li>
+									<li class="">
+										<a href="{% url 'ecommerce_app:categories' %}">Categories</a>	
+									</li>
+									{% if cat %} 
+										{% for c in cat %}
+											<li class="hassubs">
+												<a href="#" >{{ c.cat_name }}</a>
+												<ul>
+												{% if sub %} 
+													{% for s in sub %}
+														<li>
+															<a href="#">{{ s.sub_name }}</a>
+														</li>
+													{% endfor %}
+												{% endif %}
+												</ul>
+											</li>
+										{% endfor %}
+									{% endif %}
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
                             </nav>
@@ -137,10 +153,19 @@
 					</form>
 				</div>
 				<ul class="page_menu_nav menu_mm">
-					<li class="page_menu_item has-children menu_mm"><a href="index.html">Home</a></li>
-					<li class="page_menu_item has-children menu_mm"><a href="categories.html">Categories</a></li>
-					<li class="page_menu_item menu_mm"><a href="#">Accessories<i class="fa fa-angle-down"></i></a></li>
-					<li class="page_menu_item menu_mm"><a href="#">Offers<i class="fa fa-angle-down"></i></a></li>
+					<li class="page_menu_item has-children menu_mm"><a href="{% url 'index'%}">Home</a></li>
+					<li class="page_menu_item has-children menu_mm">
+						<a href="{% url 'ecommerce_app:categories' %}">Categories</a>
+						{% if cat %} 
+							{% for c in cat %}
+								<ul>
+									<li class=" hassubs page_menu_item has-children menu_mm">
+										<a href="#">{{ c.cat_name }}</a>
+									</li>
+								</ul>
+							{% endfor %}
+						{% endif %}
+					</li>
 					<li class="page_menu_item menu_mm"><a href="contact.html">Contact<i class="fa fa-angle-down"></i></a></li>
 				</ul>
 			</div>
